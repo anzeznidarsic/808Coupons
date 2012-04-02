@@ -1,0 +1,33 @@
+<h1>Listing coupons for <em><%= @company.name %></em></h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Disclaimer</th>
+    <th>Terms</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @coupons.each do |coupon| %>
+  <tr>
+    <td><%= coupon.name %></td>
+    <td><%= coupon.description %></td>
+    <td><%= coupon.disclaimer %></td>
+    <td><%= coupon.terms %></td>
+    <td><%= coupon.start_date %></td>
+    <td><%= coupon.end_date %></td>
+    <td><%= link_to 'Show', :action => 'show', :id => coupon.id, :company_id => @company.id %></td>
+    <td><%= link_to 'Edit', edit_coupon_path(coupon, :company_id => @company.id) %></td>
+    <td><%= link_to 'Destroy', coupon, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Coupon', new_coupon_path(:company_id => @company.id) %>

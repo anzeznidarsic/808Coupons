@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Company:</b>
+  <%= @company.name %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @coupon.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @coupon.description %>
+</p>
+
+<p>
+  <b>Disclaimer:</b>
+  <%= @coupon.disclaimer %>
+</p>
+
+<p>
+  <b>Terms:</b>
+  <%= @coupon.terms %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @coupon.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @coupon.end_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_coupon_path(@coupon) %> |
+<%= link_to 'Back', coupons_path(:company_id => @company.id) %>

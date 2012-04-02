@@ -1,0 +1,80 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @company.name %>
+</p>
+
+<p>
+  <b>Owner:</b>
+  <%= @company.owner %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @company.address %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @company.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @company.state %>
+</p>
+
+<p>
+  <b>Zip:</b>
+  <%= @company.zip %>
+</p>
+
+<p>
+  <b>Date opened:</b>
+  <%= @company.date_opened %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @company.email %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @company.phone %>
+</p>
+
+<p>
+  <b>Website:</b>
+  <%= @company.website %>
+</p>
+
+<p>
+  <b>Facebook:</b>
+  <%= @company.facebook %>
+</p>
+
+<p>
+  <b>Twitter:</b>
+  <%= @company.twitter %>
+</p>
+
+<p>
+  <b>Youtube:</b>
+  <%= @company.youtube %>
+</p>
+
+<p>
+  <b>Hours of operation:</b>
+  <%= @company.hours_of_operation %>
+</p>
+
+<p>
+  <b>Industry:</b>
+  <%= @company.industry %>
+</p>
+
+
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>
