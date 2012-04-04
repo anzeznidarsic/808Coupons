@@ -39,3 +39,7 @@ gem 'jquery-rails'
 # gem 'ruby-debug'
 
 gem 'mysql2'
+
+gem 'geocoder'
+
+gem 'pg'

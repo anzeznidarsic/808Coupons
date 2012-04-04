@@ -4,6 +4,8 @@ class CouponsController < ApplicationController
   
   before_filter :find_company
   
+  layout 'admin'
+  
   # GET /coupons
   # GET /coupons.json
   def index
@@ -51,7 +53,7 @@ class CouponsController < ApplicationController
 
     respond_to do |format|
       if @coupon.save
-        format.html { redirect_to @coupon, :company_id => @coupon.company_id, :notice => 'Coupon was successfully created.' }
+        format.html { redirect_to :controller => 'coupons', :action => 'show', :id => @coupon.id, :company_id => @coupon.company_id, :notice => 'Coupon was successfully created.' }
         format.json { render :json => @coupon, :status => :created, :location => @coupon }
       else
         format.html { 

@@ -1,0 +1,188 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.hideme {
+visibility: hidden;
+}
+
+
+
+.globalwrap {
+	background-image:url(/assets/bodybg_all.jpg);
+	background-repeat:repeat;
+	height:100%;
+	margin-left:0px;
+	margin-right:0px;
+	width:100%;
+	
+	
+}
+
+#topLogo {
+	background-image:url(/assets/bg_top_1.jpg);
+	background-repeat:repeat;
+	height:100px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:20px;
+	 
+	
+}
+.logo {
+
+display: block;
+
+
+}
+	
+.logo > img {
+
+  display: block;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:-5px;
+
+}
+.logoIndex {
+	
+
+display: block;
+
+
+} 
+.logoIndex > img {
+
+  display: block;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:-5px;
+ 
+} 
+
+.imgHolder {
+	margin-bottom:20px;
+	display:block
+}
+
+.imgHolder > img {
+display: block;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:-10px;
+  margin-bottom:-10px;
+  padding:10px 10px 10px 0px;
+	
+}
+
+.bigContainer {
+	
+height:472px;
+width:auto;
+background-image:url(/assets/bg_top_1.jpg);
+background-repeat:repeat;
+margin-top:-22px;
+margin-left:auto;
+margin-right:auto;
+	
+}
+.hr {
+	background-image:url(/assets/hr_bg.jpg);
+	background-repeat:repeat;
+	height:1px;
+}
+
+
+  
+  
+  .notify {
+  padding: 1px 9px 2px;
+  font-size: 12.025px;
+  font-weight: bold;
+  white-space: nowrap;
+  color: #ffffff;
+  background-color: #999999;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+  float:right;
+}
+
+
+
+	.logoCo {
+	
+	height:120px;
+	
+}
+
+
+.distance { 
+		
+		
+height: 0;
+	 color:#999;
+	 text-transform:italics;
+  text-decoration: none;
+  font-weight:normal;
+  font-size:11px;
+ 
+  margin-left:100px;
+  margin-top:-30px;
+ 
+  
+
+	
+}
+
+.topLogoIndex > img {
+	  display: block;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:-5px;
+	 
+	
+}
+#loader {
+	margin-right:auto;
+	margin-left:auto;
+	  display: block;
+  max-width: 100%;
+	
+}
+  
+  .resultlist li {
+	 margin-top:5px;
+	  font-size:14px;
+	  font-weight:normal;
+	  padding:8px 8px 8px 8px;
+	  border:thin;
+	  border-bottom-style:solid;
+	   border-bottom-color: #ccc;
+  list-style:none;
+  }
+    .resultlist hover:li {
+		 margin-top:5px;
+	  font-size:14px;
+	  font-weight:normal;
+	  padding:8px;
+	
+  }
+  
+.addressResult {
+	padding-top:20px;
+	font-size:11px;
+	color:#999;
+	margin-left:20px;
+	
+	
+}
+
+
+/** Bootstrap overrides **/
+[class^="icon-"], [class*=" icon-"] {
+	background-image: url("/assets/glyphicons-halflings.png");
+}

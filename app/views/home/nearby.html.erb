@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="span12">
+         <ul class="breadcrumb">
+          <li>
+            <a href="index.html"><i class="icon-home"></i></a> <span class="divider">/</span>
+          </li>
+          <li class="active">
+          Coupons
+          </li>
+
+        </ul>
+    
+    </div>
+    <div class="span12">
+        <ul class="resultlist">
+            <% @companies.each do |c| %>
+            <a href="javascript:loadPage('/home/coupons?company_id=<%= c.id %>')">
+			<li><%= c.name %><span class="muted addressResult"><br>
+		    <%= c.address %> (<%= number_with_precision(c.distance, :precision => 2) %> miles)<i class="icons-chevron-right"></i></span></li>
+        	</a>
+            <% end %>
+        </ul>
+    </div>
+</div>
