@@ -1,6 +1,5 @@
 class CompaniesController < ApplicationController
   http_basic_authenticate_with :name => '808', :password => 'coupons',
-    :except => [:index, :show]
 
   layout 'admin'
 
