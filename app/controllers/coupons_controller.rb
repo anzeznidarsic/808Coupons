@@ -1,5 +1,5 @@
 class CouponsController < ApplicationController
-  http_basic_authenticate_with :name => '808', :password => 'coupons',
+  http_basic_authenticate_with :name => '808', :password => 'coupons'
   
   before_filter :find_company
   
