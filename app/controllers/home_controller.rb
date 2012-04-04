@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  http_basic_authenticate_with :name => '808', :password => 'coupons'
+  http_basic_authenticate_with :name => 'aa', :password => 'bb'
   
   layout :get_layout
   
