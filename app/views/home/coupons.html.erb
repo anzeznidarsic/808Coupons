@@ -1,17 +1,11 @@
-    <div class="span12">
-        <ul class="resultlist">
-            <% @coupons.each do |c| %>
-            
-            <div class="span4">
-                <ul class="resultlist">
-                    <li>
-                        <h2><%= c.name %></h2>
-                        <p><%= c.description %></p>
-                        <a class="btn btn-success btn-mini" href="print.html">Details and printing</a>
-                   </li>
-               </ul>
-            </div>
-            
-            <% end %>
-        </ul>
-    </div>
+<div class="span4">
+    <ul class="resultlist">
+        <% @coupons.each do |c| %>
+        <li>
+            <h2><%= c.name %></h2>
+            <p><%= c.description %></p>
+            <a class="btn btn-success btn-mini" href="print.html">Details and printing</a>
+        </li>
+        <% end %>
+    </ul>
+</ul>
