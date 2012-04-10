@@ -15,5 +15,7 @@
 </div>
 
 <script type="text/javascript">
-  navigator.geolocation.getCurrentPosition(showDeals, showError);
+$(function() {
+    navigator.geolocation.getCurrentPosition(loadCompanies, showError)
+})
 </script>

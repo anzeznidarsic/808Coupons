@@ -1,7 +1,7 @@
     <div class="span12">
         <ul class="resultlist">
             <% @companies.each do |c| %>
-            <a href="javascript:loadPage('/home/coupons?company_id=<%= c.id %>')">
+            <a href="javascript:loadCompany(<%= c.id %>)">
 			<li><%= c.name %><span class="muted addressResult"><br>
 		    <%= c.address %> (<%= number_with_precision(c.distance, :precision => 2) %> miles)<i class="icons-chevron-right"></i></span></li>
         	</a>

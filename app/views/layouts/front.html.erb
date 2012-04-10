@@ -58,7 +58,7 @@
             <span class="icon-bar"></span>
           </a>
       -->
-  <a class="topLogoIndex" style="border:none" href="index.html"><%= image_tag "logo_top_1.png" %></a>
+  <a class="topLogoIndex" style="border:none" href="/"><%= image_tag "logo_top_1.png" %></a>
          
              	 
          
@@ -148,10 +148,18 @@
                <!-- end modal here -->
 
                <script type="text/javascript">
+               lat = null
+               lon = null
+                              
                function showError(error) {
                    console.log(error)
                }
-
+               
+               function loadCompany(id) {
+                   loadPage('/home/coupons?company_id='+id)
+                   updateBreadcrumb('coupons', id)
+               }
+               
                function loadPage(url, data, back) {
                    if (typeof(data) === undefined) {
                        data = ''
@@ -174,12 +182,28 @@
                        		//On completion of the animation set the DIV back to static
                        		$('#content').css('position','static');
                        	});
-
-                       console.log(response)
                    });
                }
-               function showDeals(position) {
-                   loadPage('/home/nearby', 'lat=' + position.coords.latitude + '&lon=' + position.coords.longitude, false)
+               
+               // load list of companies
+               function loadCompanies(position) {
+                   lat = position.coords.latitude
+                   lon = position.coords.longitude
+                   loadPage('/home/nearby', 'lat=' + lat + '&lon=' + lon)
+               }
+               
+               function updateBreadcrumb(type, id) {
+                   breadcrumb = $('#breadcrumb')
+                   if (type == 'coupons') {
+                       html = '<li id="breadcoupons"><a href="javascript:loadCompany(' + id + ')">Coupons</a></li>'
+                   }
+                   //console.log(html)
+                   console.log($('#bread'+type).length);
+                   if ($('#bread'+type).length < 1) {
+                       breadcrumb.append(html)                       
+                   } else {
+                       $(html).replaceAll($('#bread'+type))
+                   }
 
                }
 
@@ -189,9 +213,12 @@
     <div class="container">
         <div class="row">
             <div class="span12">
-                 <ul class="breadcrumb">
-                  <li>
-                    <a href="/"><i class="icon-home"></i></a> <span class="divider">/</span>
+                 <ul id="breadcrumb" class="breadcrumb">
+                  <li id="breadHome">
+                    <a href="javascript:loadPage('/')"><i class="icon-home"></i></a> <span class="divider">/</span>
+                  </li>
+                  <li id="breadCompanies">
+                    <a href="javascript:loadPage('/')">Providers</a> <span class="divider">/</span>
                   </li>
                 </ul>
             </div>
@@ -207,13 +234,6 @@
             <p><a data-toggle="modal" href="#contactsModal">Contact Us</a> | <a a data-toggle="modal" href="#termsModal">Terms and Conditions</a></p>
         </footer>
     </div>
-    
-    
-    
-    
-    
-    
-    
     
     </div>
 </div> <!-- /container -->

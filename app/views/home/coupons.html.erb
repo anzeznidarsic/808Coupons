@@ -4,7 +4,7 @@
         <li>
             <h2><%= c.name %></h2>
             <p><%= c.description %></p>
-            <a class="btn btn-success btn-mini" href="print.html">Details and printing</a>
+            <a class="btn btn-success btn-mini" href="javascript:loadPage('/home/coupon?id=<%= c.id %>&company_id=<%= c.company_id %>')">Details and printing</a>
         </li>
         <% end %>
     </ul>
