@@ -5,7 +5,9 @@
             <p><%= @coupon.description %></p>
             <p><%= @coupon.terms %></p>
             <p><%= @coupon.disclaimer %></p>
-            <p>Expiration: <%= @coupon.end_date %></p>
+            <% if @coupon.expiration? %>
+                <p><em>Expiration: <%= @coupon.end_date.strftime('%m/%d/%Y') %></b></em>
+            <% end %>
         </li>
     </ul>
 </ul>

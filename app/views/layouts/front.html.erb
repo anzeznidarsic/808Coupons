@@ -23,9 +23,9 @@
     <meta charset="utf-8">
     <title>808 Coupons</title>
      
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -150,7 +150,7 @@
                <script type="text/javascript">
                lat = null
                lon = null
-                              
+               
                function showError(error) {
                    console.log(error)
                }
@@ -167,6 +167,7 @@
                    if (typeof(back) === undefined) {
                        back = false;
                    }
+                   console.log(back)
                    $.ajax(url, {
                        data: data
                    }).done(function(response) {
@@ -185,26 +186,38 @@
                    });
                }
                
+               function loadHome() {
+                   loadPage('/', false, true)
+                   updateBreadcrumb('companies', false)
+               }
+               
                // load list of companies
                function loadCompanies(position) {
                    lat = position.coords.latitude
                    lon = position.coords.longitude
                    loadPage('/home/nearby', 'lat=' + lat + '&lon=' + lon)
+                   updateBreadcrumb('companies', position)
                }
                
                function updateBreadcrumb(type, id) {
                    breadcrumb = $('#breadcrumb')
+                   newElement = false
                    if (type == 'coupons') {
                        html = '<li id="breadcoupons"><a href="javascript:loadCompany(' + id + ')">Coupons</a></li>'
+                       newElement = true
+                       console.log('breads')
+                   }
+                   if (type == 'companies') {
+                       $('#breadcoupons').empty().remove()
                    }
                    //console.log(html)
-                   console.log($('#bread'+type).length);
-                   if ($('#bread'+type).length < 1) {
-                       breadcrumb.append(html)                       
-                   } else {
-                       $(html).replaceAll($('#bread'+type))
+                   if (newElement) {
+                       if ($('#bread'+type).length < 1) {
+                           breadcrumb.append(html)                       
+                       } else {
+                           $(html).replaceAll($('#bread'+type))
+                       }                       
                    }
-
                }
 
                </script>
@@ -215,10 +228,10 @@
             <div class="span12">
                  <ul id="breadcrumb" class="breadcrumb">
                   <li id="breadHome">
-                    <a href="javascript:loadPage('/')"><i class="icon-home"></i></a> <span class="divider">/</span>
+                    <a href="javascript:loadHome()"><i class="icon-home"></i></a> <span class="divider">/</span>
                   </li>
                   <li id="breadCompanies">
-                    <a href="javascript:loadPage('/')">Providers</a> <span class="divider">/</span>
+                    <a href="javascript:loadHome()">Providers</a> <span class="divider">/</span>
                   </li>
                 </ul>
             </div>

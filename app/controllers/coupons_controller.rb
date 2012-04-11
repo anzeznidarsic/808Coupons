@@ -67,11 +67,12 @@ class CouponsController < ApplicationController
   # PUT /coupons/1
   # PUT /coupons/1.json
    def update
+     puts "\n\n\nupdating...\n\n\n"
     @coupon = Coupon.find(params[:id])
     
     respond_to do |format|
       if @coupon.update_attributes(params[:coupon])
-        format.html { redirect_to @coupon, :company_id => @coupon.company_id, :notice => 'Coupon was successfully updated.' }
+        format.html { redirect_to :action => 'show', :id => @coupon.id, :company_id => @coupon.company_id, :notice => 'Coupon was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
