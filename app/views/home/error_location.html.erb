@@ -1,0 +1,16 @@
+<ul class="resultlist">
+    <li>
+        <div class="pagination-centered">
+            <h1>We're having some trouble looking up your location.</h1>
+            
+            <h6>Please turn on your Location services or enter your current address</h6>
+            <br>
+            <button type="submit" class="btn btn-success" onclick="location.href = '/'">Look up my location again</button>
+            <br><br>or enter your current location
+            <form class="well form-search" action="/home/search_location" method="post" onsubmit="return wwh_searchLocation()">
+                <input id="wwh_search_location" name="location" type="text" class="input-medium search-query" onclick="this.value=''" value="Address, Zip Code">
+                <input type="submit" class="btn btn-success" value="Search">
+            </form>
+        </div>
+    </li>
+</ul>

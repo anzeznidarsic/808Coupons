@@ -25,11 +25,26 @@ class HomeController < ApplicationController
     @coupon = Coupon.find(params[:id])
   end
   
+  def error_location
+  end
+  
+  def search_location
+    @s = Geocoder.search(params[:location])
+
+    return false
+    lat = s.latitude
+    lon = s.longitude
+    if (lat && lon)
+      redirect_to '/home/nearby?lat='+lat.to_s+'&lon='+lon.to_s
+    end
+  end
+  
   private
   
   # Set layour (website can work as ajax or fullsite)
   def get_layout
-    request.xhr? ? nil : 'front'
+    @layout = request.xhr? ? nil : 'front'
+    @layout
   end
 
 end

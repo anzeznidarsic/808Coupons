@@ -151,8 +151,18 @@
                lat = null
                lon = null
                
-               function showError(error) {
-                   console.log(error)
+               function wwh_getLocation() {
+                   navigator.geolocation.getCurrentPosition(loadCompanies, wwh_errorLocation)
+               }
+               
+               function wwh_errorLocation(error) {
+                   loadPage('/home/error_location')
+               }
+               
+               function wwh_searchLocation() {
+                   search = $('#wwh_search_location').val()
+                   loadPage('/home/search_location', 'location='+search)
+                   return false
                }
                
                function loadCompany(id) {
