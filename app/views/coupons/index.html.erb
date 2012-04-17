@@ -15,8 +15,8 @@
   <tr>
     <td><%= coupon.name %></td>
     <td><%= coupon.description %></td>
-    <td><%= coupon.start_date %></td>
-    <td><%= coupon.end_date %></td>
+    <td><%= l coupon.start_date %></td>
+    <td><%= l coupon.end_date %></td>
     <td><%= link_to 'Show', :action => 'show', :id => coupon.id, :company_id => @company.id %></td>
     <td><%= link_to 'Edit', edit_coupon_path(coupon, :company_id => @company.id) %></td>
     <td><%= link_to 'Destroy', coupon, :confirm => 'Are you sure?', :method => :delete %></td>

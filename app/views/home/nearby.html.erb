@@ -3,7 +3,14 @@
             <% @companies.each do |c| %>
             <a href="javascript:loadCompany(<%= c.id %>)">
 			<li><%= c.name %><span class="muted addressResult"><br>
-		    <%= c.address %> (<%= number_with_precision(c.distance, :precision => 2) %> miles)<i class="icons-chevron-right"></i></span></li>
+		    <%= c.address %> 
+		    <% if (c.distance > 0) %>
+		        (<%= number_with_precision(c.distance, :precision => 2) %> miles)
+		    <% else %>
+		        <b>(You are here!)</b>
+		    <% end %>
+		        <i class="icons-chevron-right"></i></span>
+		    </li>
         	</a>
             <% end %>
         </ul>
