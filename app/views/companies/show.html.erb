@@ -71,8 +71,8 @@
 </p>
 
 <p>
-  <b>Industry:</b>
-  <%= @company.industry %>
+  <b>Categories:</b>
+  <%= @company.categories.map{|c| c.name}.join(', ') %>
 </p>
 
 

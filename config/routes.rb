@@ -1,4 +1,6 @@
 WWHCoupons::Application.routes.draw do
+  resources :categories
+
   resources :coupons
   resources :companies
 

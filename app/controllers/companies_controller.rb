@@ -60,6 +60,7 @@ class CompaniesController < ApplicationController
   # PUT /companies/1
   # PUT /companies/1.json
   def update
+    params[:company][:category_ids] ||= []  
     @company = Company.find(params[:id])
 
     respond_to do |format|
