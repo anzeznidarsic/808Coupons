@@ -1,7 +1,7 @@
     <div class="span12">
         <ul class="resultlist">
             <% @companies.each do |c| %>
-            <a href="javascript:loadCompany(<%= c.id %>)">
+            <a href="/home/coupons?company_id=<%= c.id %>" onclick="return wwwh_openPage('/home/coupons?company_id=<%= c.id %>')">
 			<li><%= c.name %><span class="muted addressResult"><br>
 		    <%= c.address %> 
 		    <% if (c.distance > 0) %>

@@ -59,7 +59,7 @@
             <span class="icon-bar"></span>
           </a>
       -->
-  <a class="topLogoIndex" style="border:none" href="/"><%= image_tag "logo_top_1.png" %></a>
+  <a class="topLogoIndex" style="border:none" href="/" onclick="return wwwh_openPage('/')"><%= image_tag "logo_top_1.png" %></a>
          
              	 
          
@@ -175,10 +175,19 @@
                    return false
                }
                
-               function loadCompany(id) {
-                   History.pushState(null, null, '/home/coupons?company_id='+id)
-                   updateBreadcrumb('coupons', id)
+               function wwwh_openPage(url, data) {
+                   if (typeof(data) === undefined) {
+                       data = {}
+                   }
+                   History.pushState(data, '', url)
+                   
+                   return false;
                }
+               
+               // function loadCompany(id) {
+               //                    History.pushState(null, null, '/home/coupons?company_id='+id)
+               //                    updateBreadcrumb('coupons', id)
+               //                }
                
                function loadPage(url, data, back) {
                    if (typeof(data) === undefined) {
@@ -206,10 +215,10 @@
                    });
                }
                
-               function loadHome() {
-                   History.pushState(null, null, '/')
-                   updateBreadcrumb('companies', false)
-               }
+               // function loadHome() {
+               //                    History.pushState(null, null, '/')
+               //                    updateBreadcrumb('companies', false)
+               //                }
                
                // load list of companies
                function loadCompanies(position) {
@@ -218,9 +227,9 @@
                    History.pushState({lat: lat, lon: lon}, null, '/home/nearby')
                    updateBreadcrumb('companies', position)
                }
-               function loadCoupon(id, company_id) {
-                   History.pushState({lat: lat, lon: lon}, null, '/home/coupon?id='+id+'&company_id='+company_id)
-               }
+               // function loadCoupon(id, company_id) {
+               //                    History.pushState({lat: lat, lon: lon}, null, '/home/coupon?id='+id+'&company_id='+company_id)
+               //                }
                
                function updateBreadcrumb(type, id) {
                    breadcrumb = $('#breadcrumb')
@@ -251,10 +260,10 @@
             <div class="span12">
                  <ul id="breadcrumb" class="breadcrumb">
                   <li id="breadHome">
-                    <a href="javascript:loadHome()"><i class="icon-home"></i></a> <span class="divider">/</span>
+                    <a href="/" onclick="return wwwh_openPage('/')"><i class="icon-home"></i></a> <span class="divider">/</span>
                   </li>
                   <li id="breadCompanies">
-                    <a href="javascript:loadHome()">Providers</a> <span class="divider">/</span>
+                    <a href="/" onclick="return wwwh_openPage('/')">Providers</a> <span class="divider">/</span>
                   </li>
                 </ul>
             </div>
