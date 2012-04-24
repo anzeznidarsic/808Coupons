@@ -1,3 +1,6 @@
+# Main frotnend controller driving all actions
+# All actions are avaiable as fullpage and ajax partials
+
 class HomeController < ApplicationController
   
   http_basic_authenticate_with :name => 'aa', :password => 'bb'

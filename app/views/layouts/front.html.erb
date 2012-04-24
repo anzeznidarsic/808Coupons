@@ -8,6 +8,7 @@
     <%= stylesheet_link_tag    "couponsmobile", :media => "all" %>
 
     <%= javascript_include_tag "jquery" %>
+    <%= javascript_include_tag "jquery.history" %>
     <%= javascript_include_tag "bootstrap-transition" %>
     <%= javascript_include_tag "bootstrap-alert" %>
     <%= javascript_include_tag "bootstrap-modal" %>
@@ -151,6 +152,15 @@
                lat = null
                lon = null
                
+               $(function() {
+                   $(window).bind('statechange',function(){
+               			State = History.getState()
+                        url = State.url
+                        data = State.data
+                        console.log(State)
+                        loadPage(url, data)
+           			})
+               })         
                function wwh_getLocation() {
                    navigator.geolocation.getCurrentPosition(loadCompanies, wwh_errorLocation)
                }
@@ -166,7 +176,7 @@
                }
                
                function loadCompany(id) {
-                   loadPage('/home/coupons?company_id='+id)
+                   History.pushState(null, null, '/home/coupons?company_id='+id)
                    updateBreadcrumb('coupons', id)
                }
                
@@ -177,27 +187,27 @@
                    if (typeof(back) === undefined) {
                        back = false;
                    }
-                   console.log(back)
+ 
                    $.ajax(url, {
                        data: data
                    }).done(function(response) {
-                           $('#content').html(response)
-                           back = false
-                           $('#content').css('position','relative');
-                       	//Move the DIV to the right 400px
-                       	//Unless We're going back to a page, then move DIV to the left -400px (So it'll slide to the right)
-                       	$('#content').css('left',(back ? -400:400));
-                       	//Now animate the DIV to move back to the Left 400px
-                       	//Back to its original position
-                           $('#content').animate({left:0},'fast','linear',function(){
-                       		//On completion of the animation set the DIV back to static
-                       		$('#content').css('position','static');
-                       	});
+                       $('#content').html(response)
+                       back = false
+                       $('#content').css('position','relative');
+                       //Move the DIV to the right 400px
+                       //Unless We're going back to a page, then move DIV to the left -400px (So it'll slide to the right)
+                       $('#content').css('left',(back ? -400:400));
+                       //Now animate the DIV to move back to the Left 400px
+                       //Back to its original position
+                       $('#content').animate({left:0},'fast','linear',function(){
+                       //On completion of the animation set the DIV back to static
+                       $('#content').css('position','static');
+                      });
                    });
                }
                
                function loadHome() {
-                   loadPage('/', false, true)
+                   History.pushState(null, null, '/')
                    updateBreadcrumb('companies', false)
                }
                
@@ -205,8 +215,11 @@
                function loadCompanies(position) {
                    lat = position.coords.latitude
                    lon = position.coords.longitude
-                   loadPage('/home/nearby', 'lat=' + lat + '&lon=' + lon)
+                   History.pushState({lat: lat, lon: lon}, null, '/home/nearby')
                    updateBreadcrumb('companies', position)
+               }
+               function loadCoupon(id, company_id) {
+                   History.pushState({lat: lat, lon: lon}, null, '/home/coupon?id='+id+'&company_id='+company_id)
                }
                
                function updateBreadcrumb(type, id) {
