@@ -149,15 +149,14 @@
                <!-- end modal here -->
 
                <script type="text/javascript">
-               lat = null
-               lon = null
+               var lat = null
+               var lon = null
                
                $(function() {
                    $(window).bind('statechange',function(){
                			State = History.getState()
                         url = State.url
                         data = State.data
-                        console.log(State)
                         loadPage(url, data)
            			})
                })         
@@ -176,8 +175,8 @@
                }
                
                function wwwh_openPage(url, data) {
-                   if (typeof(data) === undefined) {
-                       data = {}
+                   if (typeof(data) === 'undefined') {
+                       data = {lat: lat, lon: lon}
                    }
                    History.pushState(data, '', url)
                    
@@ -191,7 +190,7 @@
                
                function loadPage(url, data, back) {
                    if (typeof(data) === undefined) {
-                       data = ''
+                       data = {lat: lat, lon: lon}
                    }
                    if (typeof(back) === undefined) {
                        back = false;
@@ -237,19 +236,29 @@
                    if (type == 'coupons') {
                        html = '<li id="breadcoupons"><a href="javascript:loadCompany(' + id + ')">Coupons</a></li>'
                        newElement = true
-                       console.log('breads')
                    }
                    if (type == 'companies') {
                        $('#breadcoupons').empty().remove()
                    }
-                   //console.log(html)
+
                    if (newElement) {
                        if ($('#bread'+type).length < 1) {
                            breadcrumb.append(html)                       
                        } else {
                            $(html).replaceAll($('#bread'+type))
-                       }                       
+                       }
                    }
+               }
+               
+               function wwh_newCategories(categories) {
+                   html = ''
+                   $.each(categories, function(index, value) {
+                       url = '/home/nearby?category_id=' + value.id
+                       html = html + '<a href="'+ url +'" onclick="return wwwh_openPage(\''+url+'\')"><li>' + value.name + ' (' + value.count + ')</li></a>'
+                   });
+                   html = html + '<li class="divider"></li><a href="/home/nearby/" onclick="return wwwh_openPage(\'/home/nearby\')"><li>All</li></a>'
+                   $('#categories_selection').html(html)
+                   $('#categoriesForm').show()
                }
 
                </script>
@@ -265,6 +274,18 @@
                   <li id="breadCompanies">
                     <a href="/" onclick="return wwwh_openPage('/')">Providers</a> <span class="divider">/</span>
                   </li>
+                  
+                  <div class="categoriesForm" id="categoriesForm" style="display: none">
+                          <div class="btn-group">
+                          <button class="btn">Filter</button>
+                          <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                          <ul class="dropdown-menu pull-right " id="categories_selection">
+                            
+                            
+                          </ul>
+                        </div>
+                  	</div>
+                  
                 </ul>
             </div>
             <div id="content" class="row">

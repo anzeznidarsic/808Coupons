@@ -15,10 +15,36 @@ class HomeController < ApplicationController
   def nearby
     lat = params[:lat]
     lon = params[:lon]
-    @companies = Company.near([lat, lon], 10)
+    category_id = params[:category_id] || nil
+    @companies = Company.near([lat, lon], 10).joins(:categories).uniq
+    # filter categories
+    if !(category_id.nil?) then
+      @companies = @companies.where(['categories.id = ?', category_id])
+    end
+    categories = {}
+    
+    # format distance and extract categories
     @companies.each { |c|
       c.distance = c.distance.to_d.round(2)
+      c.categories.each { |cat|
+        if (categories[cat.id].nil?) then 
+          categories[cat.id] = 1
+        else
+          categories[cat.id] += 1
+        end
+      }
     }
+    
+    # list existing categories with count of companies belonging to it
+    @categories = Array.new
+    Category.where({:active => true}).each do |cat|
+      if !(categories[cat.id].nil?) then
+        @categories << { :id => cat.id, :name => cat.name, :count => categories[cat.id]}
+      end
+    end
+    
+    # sort descending by number of hits in category
+    @categories.sort_by! { |c| c[:count] }.reverse!
   end
   
   # List of coupons for one particular company
