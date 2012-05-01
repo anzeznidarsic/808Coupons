@@ -16,7 +16,7 @@ class HomeController < ApplicationController
     lat = params[:lat]
     lon = params[:lon]
     category_id = params[:category_id] || nil
-    @companies = Company.near([lat, lon], 10).joins(:categories).uniq
+    @companies = Company.near([lat, lon], 100).joins(:categories).uniq
     # filter categories
     if !(category_id.nil?) then
       @companies = @companies.where(['categories.id = ?', category_id])
