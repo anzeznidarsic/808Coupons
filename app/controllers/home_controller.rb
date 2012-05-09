@@ -3,7 +3,7 @@
 
 class HomeController < ApplicationController
   
-  http_basic_authenticate_with :name => 'aa', :password => 'bb'
+#  http_basic_authenticate_with :name => 'aa', :password => 'bb'
   
   layout :get_layout
   
