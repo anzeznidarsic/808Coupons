@@ -37,7 +37,7 @@
   </div>
   <div class="field">
     <%= f.label :date_opened %><br />
-    <%= f.date_select :date_opened %>
+    <%= f.date_select :date_opened, :start_year => 1950 %>
   </div>
   <div class="field">
     <%= f.label :email %><br />
@@ -65,7 +65,7 @@
   </div>
   <div class="field">
     <%= f.label :hours_of_operation %><br />
-    <%= f.text_area :hours_of_operation %>
+    <%= f.text_area :hours_of_operation, :size => '60x7' %>
   </div>
   <div class="field">
       <%= f.label :categories %>
@@ -75,6 +75,10 @@
             <%= category.name %>  
           </div>  
       <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment, :size => '60x7' %>
   </div>
   <div class="actions">
     <%= f.submit %>
